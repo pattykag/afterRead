@@ -54,6 +54,21 @@ module.exports = cds.service.impl(async (srv) => {
                 FiscalYear(aDate[0], aDate[1]);
             }
 
+            let currentDate = new Date();
+            let currentDateMonth;
+            console.log('currentDate', typeof currentDate);
+
+            if (currentDate.getMonth().length=1) {
+                currentDateMonth = currentDate.getMonth()+1;
+                currentDateMonth = `0${currentDateMonth}`;
+            }
+            currentDate = `${currentDate.getFullYear()}-${currentDateMonth}-${currentDate.getDate()}`;
+            //currentDate = new Date(currentDate);
+            console.log('currentDate', typeof currentDate);
+            if (aDate[0] === currentDate) {
+                req.error('Fecha no válida');
+            }
+
             // let a = [];
             // let b = {};
             // let c;
